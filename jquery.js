@@ -12,9 +12,13 @@ $(document).ready(function() {
                 colstart.appendTo(rowstart);
                 var rowend = $("</tr>");
                 rowend.appendTo(rowstart);
+                $("table td").addClass(function(index) {
+                    return "cell-" + index;
+                });
             }
             $(table).appendTo(rowend);
             $('tbody').append(table);
+
         }
     }
 
@@ -26,21 +30,14 @@ $(document).ready(function() {
     $("#pixelCanvas").on({
         click: function() {
             var dynaColor = $("#colorPicker").val();
-
-            $("td").each(function(i) {
-                if ($(this).css("background-color") !== dynaColor) {
-                    $("td").toggleClass("column-cell").css("background-color", dynaColor);
-                }
-
-            });
+            $("td:hover").css("background-color", dynaColor);
         }
     });
-
 
     $("#pixelCanvas").on({
         dblclick: function() {
             var dynaColor = $("#colorPicker").val();
-            $("td").toggleClass("column-cell").css("background-color", "white");
+            $("td:hover").css("background-color", "white");
         }
     });
 
